@@ -1,0 +1,161 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding:0;
+    background-color: #f0f0f0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0px;
+    background-color: #333;
+    color: white;
+}
+
+header .difficulty button {
+    margin: auto;
+    padding: 5px 10px;
+    border: none;
+    background: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#rules-button {
+    background-color: #444;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size-adjust: 0.8;
+    border-radius: 5px;
+}
+
+
+.container {
+    text-align: center;
+    position: absolute;
+    top: 3%; /* Header Height */
+    bottom: 3%; /* Footer Height */
+    width: 100%;
+    margin: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 30%;
+    aspect-ratio: 1/1;
+    margin: 20px auto;
+}
+
+table, th, td {
+    border: 1px solid #333;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+td {
+    cursor: pointer;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.correct {
+    background-color: rgba(17, 255, 17, 0.83);
+    color: white;
+}
+
+.correct-animation {
+    animation: fanfare 0.7s ease-in-out;
+}
+
+.highlight {
+    background-color: #ffff33;
+}
+
+.incorrect {
+    background-color: #ff2d2d;
+    animation: shake 0.5s;
+}
+
+#rules-button {
+    margin-right: 2%;
+}
+
+#word-list ul {
+    display: inline-block;
+    list-style-type: none;
+    flex-wrap: wrap;
+    text-align: center;
+    padding: 0;
+}
+
+#word-list li {
+    font-weight: bold;
+    display: inline-block;
+    text-align: center;
+    margin: 5px;
+}
+
+/* Efekt złej odpowiediz */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Uniemożliwienie zaznaczania liter w tabelce */
+.prevent-select {
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.action-button {
+    background-color: #333;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+
+/* Efekt fanfar */
+@keyframes fanfare {
+    0% {
+        transform: scale(1);
+        color: #a8a59b; /* złoty kolor */
+        text-shadow: 0 0 10px #FFD700;
+    }
+    50% {
+        transform: scale(1.2);
+        color: #4c4747; /* pomarańczowy */
+        text-shadow: 0 0 20px #FF4500;
+    }
+    100% {
+        transform: scale(1);
+        color: #b1aea3;
+        text-shadow: 0 0 10px #FFD700;
+    }
+}
