@@ -1,4 +1,4 @@
-let boardSize = 8; /* początkowe wartości dla easy level*/
+let boardSize = 8; /* początkowe wartości dla easy level */
 let maxWords = 5;
 const board = [];
 let words = [];
@@ -144,19 +144,42 @@ function handleMouseEnter(event) {
         const [startRow, startCol] = [startCell.parentNode.rowIndex, startCell.cellIndex];
         const [currentRow, currentCol] = [currentCell.parentNode.rowIndex, currentCell.cellIndex];
 
+        // Ustal kierunek przy pierwszym ruchu
         if (!direction) {
             if (startRow === currentRow) direction = "horizontal";
             else if (startCol === currentCol) direction = "vertical";
-            else return;
+            else return; // Jeśli kierunek jest po skosie, zignoruj zaznaczenie
         }
 
-        if ((direction === "horizontal" && startRow === currentRow) ||
-            (direction === "vertical" && startCol === currentCol)) {
-            currentCell.classList.add("highlight");
-            selectedCells.push(currentCell);
+        // Sprawdzenie sąsiedztwa dla dodania na początek lub koniec
+        const firstCell = selectedCells[0];
+        const lastCell = selectedCells[selectedCells.length - 1];
+        const [firstRow, firstCol] = [firstCell.parentNode.rowIndex, firstCell.cellIndex];
+        const [lastRow, lastCol] = [lastCell.parentNode.rowIndex, lastCell.cellIndex];
+
+        if (direction === "horizontal" && startRow === currentRow) {
+            // Dodanie na początek lub koniec w poziomie
+            if (currentCol === firstCol - 1) {
+                selectedCells.unshift(currentCell);
+                currentCell.classList.add("highlight");
+            } else if (currentCol === lastCol + 1) {
+                selectedCells.push(currentCell);
+                currentCell.classList.add("highlight");
+            }
+        } else if (direction === "vertical" && startCol === currentCol) {
+            // Dodanie na początek lub koniec w pionie
+            if (currentRow === firstRow - 1) {
+                selectedCells.unshift(currentCell);
+                currentCell.classList.add("highlight");
+            } else if (currentRow === lastRow + 1) {
+                selectedCells.push(currentCell);
+                currentCell.classList.add("highlight");
+            }
         }
     }
 }
+
+
 
 /* Sprawdzanie czy słowo jest w liście i czy wygrana */
 function handleMouseUp() {
@@ -166,11 +189,11 @@ function handleMouseUp() {
 
     if (words.includes(selectedWord) || words.includes(reversedWord)) {
         selectedCells.forEach(cell => {
-            cell.classList.add("correct-animation"); // TODO ta linijka jakby się nie wykonywała, mimo że się wykonuje
+            cell.classList.add("correct-animation");
             setTimeout(() => cell.classList.remove("correct-animation"), 800);
             cell.classList.add("correct");
         });
-        alert("okkk")
+
         foundWords.add(selectedWord);
         updateWordList();
     } else {
@@ -222,7 +245,7 @@ function closePopup() {
     popup.classList.add("hidden");
 }
 
-/* Dodawanie listenerów */
+// Dodawanie listenerów
 const table = document.getElementById('crossword');
 table.addEventListener("mousedown", (event) => {
     if (event.target.tagName === "TD") handleMouseDown(event);
