@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produkty</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input, select {
+      margin: 10px;
+      padding: 5px;
+      font-size: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  </style>
+</head>
+<body>
+<h1>Lista Produktów</h1>
+
+
+<input type="text" id="filterInput" placeholder="Wpisz frazę do filtrowania..." oninput="filterAndSort()">
+<select id="sortSelect" onchange="filterAndSort()">
+  <option value="original">Oryginalna kolejność</option>
+  <option value="asc">Rosnąco (alfabetycznie)</option>
+  <option value="desc">Malejąco (alfabetycznie)</option>
+</select>
+
+
+<table>
+  <thead>
+  <tr>
+    <th>Zdjęcie</th>
+    <th>Tytuł</th>
+    <th>Opis</th>
+  </tr>
+  </thead>
+  <tbody id="productsTable">
+  <!-- Dane zostaną wstawione dynamicznie -->
+  </tbody>
+</table>
+
+<script>
+  let originalData = [];
+  let filteredData = [];
+
+  // Pobierz dane z API
+  async function fetchProducts() {
+    try {
+      const response = await fetch('https://dummyjson.com/products');
+      const data = await response.json();
+      originalData = data.products;
+      filteredData = [...originalData]; // kopiowanie originalData
+      displayProducts(filteredData);
+    } catch (error) {
+      console.error("Błąd podczas pobierania danych:", error);
+    }
+  }
+
+  function displayProducts(products) {
+    const tableBody = document.getElementById('productsTable');
+    tableBody.innerHTML = ''; // Wyczyść tabelę
+
+    products.forEach(product => {
+      const row = `
+                    <tr>
+                        <td><img src="${product.thumbnail}" alt="${product.title}"></td>
+                        <td>${product.title}</td>
+                        <td>${product.description}</td>
+                    </tr>
+                `;
+      tableBody.innerHTML += row;
+    });
+  }
+
+  function filterAndSort() {
+    const filterInput = document.getElementById('filterInput').value.toLowerCase();
+    const sortValue = document.getElementById('sortSelect').value;
+
+    filteredData = originalData.filter(product =>
+            product.title.toLowerCase().includes(filterInput) ||
+            product.description.toLowerCase().includes(filterInput)
+    );
+
+    if (sortValue === 'asc') {
+      filteredData.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortValue === 'desc') {
+      filteredData.sort((a, b) => b.title.localeCompare(a.title));
+    }
+
+    displayProducts(filteredData);
+  }
+
+  fetchProducts();
+</script>
+</body>
+</html>

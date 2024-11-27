@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Generator haseł</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      font-size: 16px;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Generator haseł</h1>
+  <label for="minLength">Minimalna długość hasła:</label>
+  <input type="text" id="minLength" placeholder="Wpisz minimalną długość">
+
+  <label for="maxLength">Maksymalna długość hasła:</label>
+  <input type="text" id="maxLength" placeholder="Wpisz maksymalną długość">
+
+  <label>
+    <input type="checkbox" id="includeUppercase"> Czy hasło ma zawierać wielkie litery?
+  </label>
+
+  <label>
+    <input type="checkbox" id="includeSpecial"> Czy hasło ma zawierać znaki specjalne?
+  </label>
+
+  <button onclick="generatePassword()">Wygeneruj hasło</button>
+</div>
+
+<script>
+  function generatePassword() {
+    const minLength = parseInt(document.getElementById('minLength').value);
+    const maxLength = parseInt(document.getElementById('maxLength').value);
+    const includeUppercase = document.getElementById('includeUppercase').checked;
+    const includeSpecial = document.getElementById('includeSpecial').checked;
+
+    if (isNaN(minLength) || isNaN(maxLength) || minLength < 1 || maxLength < minLength) {
+      alert("Podaj poprawne wartości dla minimalnej i maksymalnej długości hasła.");
+      return;
+    }
+
+    const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+    const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const specialChars = '!@#$%^&*()_+[]{}|;:,.<>?';
+    const numbers = '0123456789';
+
+    let characterPool = lowercaseChars + numbers;
+    if (includeUppercase) characterPool += uppercaseChars;
+    if (includeSpecial) characterPool += specialChars;
+
+    const passwordLength = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
+    let password = '';
+    for (let i = 0; i < passwordLength; i++) {
+      const randomIndex = Math.floor(Math.random() * characterPool.length);
+      password += characterPool[randomIndex];
+    }
+
+    alert(`Wygenerowane hasło: ${password}`);
+  }
+</script>
+</body>
+</html>

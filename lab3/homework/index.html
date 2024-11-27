@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zombie Shooter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="game-container">
+    <div class="hud">
+        <div class="lives">
+            <img src="resources/full_heart.png" class="heart" id="heart1" alt="Heart">
+            <img src="resources/full_heart.png" class="heart" id="heart2" alt="Heart">
+            <img src="resources/full_heart.png" class="heart" id="heart3" alt="Heart">
+        </div>
+        <div class="score">
+            Wynik: <span id="score">00000</span>
+        </div>
+    </div>
+    <div id="game-over-popup" class="popup hidden">
+        <div class="popup-content">
+            <h1>Koniec gry!</h1>
+            <p>Twój wynik: <span id="final-score">00000</span></p>
+            <button id="restart-button">Zagraj ponownie</button>
+        </div>
+    </div>
+
+    <div id="game-board">
+        <!-- Zombie będą generowane dynamicznie -->
+    </div>
+</div>
+
+<audio id="sad-music" src="resources/sad-music.mp3"></audio>
+<script src="script.js"></script>
+</body>
+</html>
