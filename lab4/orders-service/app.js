@@ -15,31 +15,50 @@ const Order = sequelize.define('Order', {
 sequelize.sync();
 
 // Requests
-app.get('/api/orders/:userId', async (req, res) => {
+const jwt = require('jsonwebtoken');
+
+// Middleware for JWT authentication
+function authenticateToken(req, res, next) {
+    const token = req.headers['authorization']?.split(' ')[1];
+    if (!token) return res.status(401).send('Access denied. No token provided.');
+
+    jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
+        if (err) return res.status(403).send('Invalid token.');
+        req.user = user; // Add user data to the request object
+        next();
+    });
+}
+
+
+app.get('/api/orders/:userId', authenticateToken, async (req, res) => {
     const orders = await Order.findAll({ where: { userId: req.params.userId } });
     res.json(orders);
 });
 
-app.post('/api/orders', async (req, res) => {
+app.post('/api/orders', authenticateToken, async (req, res) => {
     const { userId, bookId, quantity } = req.body;
     if (!userId || !bookId || !quantity) return res.status(400).send('Invalid data');
     const order = await Order.create({ userId, bookId, quantity });
     res.status(201).json(order);
 });
 
-app.delete('/api/orders/:id', async (req, res) => {
+app.delete('/api/orders/:id', authenticateToken, async (req, res) => {
     const order = await Order.findByPk(req.params.id);
+
     if (!order) return res.status(404).send('Order not found');
+
     await order.destroy();
     res.status(204).send();
 });
 
+
 // Update order (PATCH)
-app.patch('/api/orders/:id', async (req, res) => {
+app.patch('/api/orders/:id', authenticateToken, async (req, res) => {
     const { id } = req.params;
     const { userId, bookId, quantity } = req.body;
 
     const order = await Order.findByPk(id);
+
     if (!order) return res.status(404).send('Order not found');
 
     if (userId !== undefined) order.userId = userId;
