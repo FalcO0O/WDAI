@@ -34,4 +34,20 @@ app.delete('/api/orders/:id', async (req, res) => {
     res.status(204).send();
 });
 
+// Update order (PATCH)
+app.patch('/api/orders/:id', async (req, res) => {
+    const { id } = req.params;
+    const { userId, bookId, quantity } = req.body;
+
+    const order = await Order.findByPk(id);
+    if (!order) return res.status(404).send('Order not found');
+
+    if (userId !== undefined) order.userId = userId;
+    if (bookId !== undefined) order.bookId = bookId;
+    if (quantity !== undefined) order.quantity = quantity;
+
+    await order.save();
+    res.json(order);
+});
+
 app.listen(process.env.PORT, () => console.log(`Orders service running on port ${process.env.PORT}`));
