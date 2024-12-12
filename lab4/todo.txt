@@ -1,4 +1,0 @@
-zrobić patch w ordersach, idk co on oznacza            DONE
-sprawdzić czy wszystko działa - ok, mozna zmienić jakos porty, aby system ich nie brał
-zmienić token tak aby działał poprawnie (czy zostaje przypisany na stałe, dlaczego działało ze złym tokenem (secret token a nie eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwdWJsaWNfaWQiOiJhZG1pbiJ9.78uYrFMz2fZgSGkgs4mbti-PjyspqHDzhiVQ8TmlWx4)
-odpalić to na laptopie aby nie było przypału na zajęciach
