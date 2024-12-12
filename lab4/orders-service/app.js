@@ -38,8 +38,13 @@ app.get('/api/orders/:userId', authenticateToken, async (req, res) => {
 app.post('/api/orders', authenticateToken, async (req, res) => {
     const { userId, bookId, quantity } = req.body;
     if (!userId || !bookId || !quantity) return res.status(400).send('Invalid data');
-    const order = await Order.create({ userId, bookId, quantity });
-    res.status(201).json(order);
+    if ((await Order.findAll({where: {bookId: bookId}})).length && (await Order.findAll({where: {userId: userId}})).length) {
+        const a = (await Order.findAll({where: {bookId: bookId}})).length;
+        console.log(a);
+        const order = await Order.create({ userId, bookId, quantity });
+        res.status(201).json(order);
+    }
+    else return res.status(400).send('Invalid data');
 });
 
 app.delete('/api/orders/:id', authenticateToken, async (req, res) => {
