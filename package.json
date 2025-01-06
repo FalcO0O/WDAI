@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@types/react": "^19.0.2",
+    "@types/react": "^19.0.3",
     "@types/react-dom": "^19.0.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.7",

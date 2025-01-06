@@ -16,7 +16,7 @@ function Studenci() {
     return (
         <table>
             {Students.map((student, index) => (
-                <tr key={index}>
+                <tr key={index} >
                     <td>{student.imie}</td>
                     <td>{student.nazwisko}</td>
                     <td>{student.rok}</td>

@@ -7,7 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.122",
+    "@types/node": "^16.18.123",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "react": "^19.0.0",
@@ -41,7 +41,6 @@
     ]
   },
   "devDependencies": {
-    "ajv": "^7.2.4",
-    "vite": "^6.0.6"
+    "ajv": "^7.2.4"
   }
 }
