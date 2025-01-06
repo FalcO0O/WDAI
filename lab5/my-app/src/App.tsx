@@ -1,25 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Koszyk from './components/koszyk/koszyk';
+import NowyKoszyk from "./components/koszyk/nowyKoszyk";
+import Licznik from "./components/liczniki/licznik";
+import NowyLicznik from "./components/liczniki/nowyLicznik";
+import Formularz from "./components/formularze/formularz";
+import Haslo from "./components/formularze/haslo";
+import Logowanie from "./components/formularze/logowanie"; // TODO
+import Ternary from "./components/inni/ternary";
+import Aktualizacja from "./components/inni/aktualizacja";
+import Studenci from "./components/studenci/studenci";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <Logowanie />
+      </div>
   );
 }
 
