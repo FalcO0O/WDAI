@@ -12,12 +12,14 @@ import Aktualizacja from "./components/inni/aktualizacja";
 import Studenci from "./components/studenci/studenci";
 import StudentManager from "./components/studenci/studentManager";
 import Counter from "./components/efekty/counter";
+import Tytul from "./components/efekty/tytul";
+import Odliczanie from "./components/efekty/odliczanie";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Counter/>
+        <Odliczanie/>
       </header>
     </div>
   );
