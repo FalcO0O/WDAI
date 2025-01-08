@@ -10,12 +10,14 @@ import Logowanie from "./components/formularze/logowanie";
 import Ternary from "./components/inni/ternary";
 import Aktualizacja from "./components/inni/aktualizacja";
 import Studenci from "./components/studenci/studenci";
+import StudentManager from "./components/studenci/studentManager";
+import Counter from "./components/efekty/counter";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Studenci/>
+        <Counter/>
       </header>
     </div>
   );
