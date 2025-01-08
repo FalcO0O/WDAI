@@ -1,34 +1,36 @@
 import {useEffect, useState} from "react";
 
 function Odliczanie() {
-    const [licznik, setLicznik] = useState<number>(5);
+    const [licznik, setLicznik] = useState<number>(15);
     const [buttonState, setButtonState] = useState<boolean>(false);
     const [buttonText, setButtonText] = useState<string>('');
     const [buttonDisability, setButtonDisability] = useState<boolean>(false);
 
-    let interval: NodeJS.Timeout | undefined;
-
     useEffect(() => {
-        if(buttonState)
-        {
+        let interval: NodeJS.Timeout | undefined;
+
+        if (buttonState) {
             setButtonText("Stop");
             interval = setInterval(() => {
-                setLicznik((prevCount) => prevCount - 0.1);
-                if(licznik <= 0)
-                {
-                    setButtonText("Odliczanie zakończone")
-                    setButtonDisability(true);
-                    setLicznik(0);
-                    clearInterval(interval);
-                }
+                setLicznik((prevCount) => {
+                    const newValue = prevCount - 0.1;
+                    if (newValue <= 0) {
+                        clearInterval(interval);
+                        setButtonText("Odliczanie zakończone");
+                        setButtonDisability(true);
+                        return 0;
+                    }
+                    return newValue;
+                });
             }, 100);
-        }
-        else {
+        } else {
             setButtonText("Start");
             clearInterval(interval);
         }
+
         return () => clearInterval(interval);
     }, [buttonState]);
+
 
     return (
         <div>

@@ -1,0 +1,41 @@
+.rectangle {
+    height: auto;
+    width: auto;
+    border-radius: 10px;
+}
+
+.comment-color {
+    background-color: #1d2123;
+}
+
+.marigin-padding {
+    margin: 10px;
+    padding: 10px;
+}
+
+.button-style {
+    margin: 10px;
+    border: none;
+    background-color: #3e4349;
+}
+
+.rotate {
+    rotate: -180deg;
+}
+
+.center-left {
+    text-align: left;
+}
+
+.fill {
+    width: 95%;
+
+}
+
+.body-color {
+    background-color: #3e4349;
+}
+
+.align-left {
+    text-align: left;
+}

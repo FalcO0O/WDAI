@@ -6,7 +6,7 @@ function Aktualizacja() {
         cena: 50
     });
 
-    const zmienCene = () => {
+    const changePrice = () => {
         setProdukt(
             (prev) => ({...prev, cena: 100
         }));
@@ -17,7 +17,7 @@ function Aktualizacja() {
             <div>
                 Aktualnie {produkt.nazwa} kosztuje {produkt.cena}
             </div>
-            <button onClick={zmienCene}>Zmień cenę</button>
+            <button onClick={changePrice}>Zmień cenę</button>
         </div>
     );
 };
