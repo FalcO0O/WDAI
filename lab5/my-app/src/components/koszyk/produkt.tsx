@@ -1,7 +1,7 @@
 import React from "react";
 
-function Produkt(props: { nazwa: string }) {
-  return <div>{props.nazwa}</div>;
+function Produkt(props: { name: string }) {
+  return <div>{props.name}</div>;
 }
 
 export default Produkt;

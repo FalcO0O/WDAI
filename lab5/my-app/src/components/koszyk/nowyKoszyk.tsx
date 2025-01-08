@@ -2,12 +2,12 @@ import React from "react";
 import Produkt from "./produkt";
 
 function NowyKoszyk() {
-  const produkty = ["Jabłko", "Gruszka", "Banan", "Pomarańcza", "Winogrona"];
+  const products = ["Jabłko", "Gruszka", "Banan", "Pomarańcza", "Winogrona"];
 
   return (
     <div>
-      {produkty.map((nazwaProduktu) => (
-        <Produkt nazwa={nazwaProduktu} />
+      {products.map((productName) => (
+        <Produkt name={productName} />
       ))}
     </div>
   );

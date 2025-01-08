@@ -1,8 +1,8 @@
 
 
-function Przycisk(props : {onZwieksz : () => void}) {
+function Przycisk(props : {onAdd : () => void}) {
     return (
-        <button onClick={props.onZwieksz}>Dodaj</button>
+        <button onClick={props.onAdd}>Dodaj</button>
     )
 }
 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
 function Aktualizacja() {
-    const [produkt, setProdukt] = useState<{ nazwa: string; cena: number }>({
+    const [product, setProduct] = useState<{ nazwa: string; cena: number }>({
         nazwa: 'Pomidor',
         cena: 50
     });
 
     const changePrice = () => {
-        setProdukt(
+        setProduct(
             (prev) => ({...prev, cena: 100
         }));
     };
@@ -15,7 +15,7 @@ function Aktualizacja() {
     return (
         <div>
             <div>
-                Aktualnie {produkt.nazwa} kosztuje {produkt.cena}
+                Aktualnie {product.nazwa} kosztuje {product.cena}
             </div>
             <button onClick={changePrice}>Zmień cenę</button>
         </div>

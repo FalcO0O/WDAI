@@ -29,7 +29,7 @@ function App() {
       <header className="App-header">
         {/*<Komentarz id={1} body={"podrawiam z rodzinkom"} likes={420} postID={1}*/}
         {/*           user={{id: 1, username: "ok1235", fullName: "no"}}/>*/}
-          <Komentarze/>
+          <Logowanie/>
       </header>
     </div>
   );

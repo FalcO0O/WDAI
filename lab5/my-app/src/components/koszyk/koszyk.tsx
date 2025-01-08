@@ -4,11 +4,11 @@ import Produkt from "./produkt";
 function Koszyk() {
   return (
     <div>
-      <Produkt nazwa="Jabłko" />
-      <Produkt nazwa="Gruszka" />
-      <Produkt nazwa="Banan" />
-      <Produkt nazwa="Pomarańcza" />
-      <Produkt nazwa="Winogrona" />
+      <Produkt name="Jabłko" />
+      <Produkt name="Gruszka" />
+      <Produkt name="Banan" />
+      <Produkt name="Pomarańcza" />
+      <Produkt name="Winogrona" />
     </div>
   );
 }
