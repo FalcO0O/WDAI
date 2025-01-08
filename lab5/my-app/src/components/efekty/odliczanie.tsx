@@ -1,36 +1,41 @@
 import {useEffect, useState} from "react";
-import {start} from "node:repl";
-import {clearInterval} from "node:timers";
-
 
 function Odliczanie() {
-    const [licznik, setLicznik] = useState<number>(15);
-    const [buttonValue, setButtonValue] = useState<string>("Start");
+    const [licznik, setLicznik] = useState<number>(5);
+    const [buttonState, setButtonState] = useState<boolean>(false);
+    const [buttonText, setButtonText] = useState<string>('');
+    const [buttonDisability, setButtonDisability] = useState<boolean>(false);
+
+    let interval: NodeJS.Timeout | undefined;
 
     useEffect(() => {
-        let interval: NodeJS.Timeout | undefined;
-
-        if(buttonValue === "Start")
+        if(buttonState)
         {
-            setButtonValue("Stop");
+            setButtonText("Stop");
             interval = setInterval(() => {
                 setLicznik((prevCount) => prevCount - 0.1);
+                if(licznik <= 0)
+                {
+                    setButtonText("Odliczanie zakończone")
+                    setButtonDisability(true);
+                    setLicznik(0);
+                    clearInterval(interval);
+                }
             }, 100);
-            clearInterval(interval);
         }
         else {
-            setButtonValue("Start");
+            setButtonText("Start");
             clearInterval(interval);
         }
-
-    }, [buttonValue]);
+        return () => clearInterval(interval);
+    }, [buttonState]);
 
     return (
         <div>
             <div>
                 {licznik.toFixed(1)}
             </div>
-            <button value = {buttonValue} onClick={() => {setButtonValue(buttonValue == "Start" ? "Stop" : "Start")}}/>
+            <button disabled={buttonDisability} onClick={() => {setButtonState(!buttonState)}}>{buttonText}</button>
         </div>
     );
 }
