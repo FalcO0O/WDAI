@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {logger} from "sequelize/types/utils/logger";
 
 function Licznik() {
     const [licznik, setLicznik] = useState(0);

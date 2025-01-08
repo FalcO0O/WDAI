@@ -39,12 +39,12 @@ function Komentarze() {
                     key={comment.id}
                     id={comment.id}
                     body={comment.body}
-                    likes={Math.floor(Math.random() * 100)} // losowa liczba polubień dla każdego komentarza
+                    likes={Math.floor(Math.random() * 100)}
                     postID={comment.postId}
                     user={{
                         id: comment.user.id,
                         username: comment.user.username,
-                        fullName: `Użytkownik ${comment.user.id}`, // przykładowe imię i nazwisko
+                        fullName: `Użytkownik ${comment.user.id}`,
                     }}
                 />
             ))}

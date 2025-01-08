@@ -13,6 +13,6 @@ function Formularz() {
             <div>{text}</div>
         </div>
     );
-};
+}
 
 export default Formularz;
