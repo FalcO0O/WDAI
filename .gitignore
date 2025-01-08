@@ -56,6 +56,8 @@ cmake-build-*/
 # File-based project format
 *.iws
 
+lab5/my-app/node_modules
+
 # IntelliJ
 out/
 
