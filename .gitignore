@@ -57,7 +57,7 @@ cmake-build-*/
 *.iws
 
 lab5/my-app/node_modules
-/node_modules
+node_modules/
 
 # IntelliJ
 out/
